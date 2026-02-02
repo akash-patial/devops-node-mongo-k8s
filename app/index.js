@@ -41,6 +41,7 @@ app.get('/emails', async (req, res) => {
         const emails = await Email.find({});
         res.json(emails);
     } catch (error) {
+        console.error("Save Error:", error);
         res.status(500).send('Error fetching emails');
     }
 });
