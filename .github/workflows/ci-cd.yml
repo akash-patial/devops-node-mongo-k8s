@@ -21,8 +21,8 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/akashpatial85/node-app:latest ./app
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/node-app:latest ./app
 
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/akashpatial85node-app:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/node-app:latest
