@@ -5,14 +5,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const mongoHost = process.env.MONGO_HOST || 'localhost';
+const MONGO_URL = process.env.MONGO_URL || "mongodb://service-monogdb:27017/yourDatabaseName";
 const mongoPort = process.env.MONGO_PORT || '27017';
 
 // Connect to MongoDB
-mongoose.connect(`mongodb://${mongoHost}:${mongoPort}/yourDatabaseName`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+mongoose.connect(MONGO_URL);
 
 // Create a Mongoose model
 const Email = mongoose.model('Email', {
