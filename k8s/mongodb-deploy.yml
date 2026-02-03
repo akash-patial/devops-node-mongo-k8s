@@ -5,7 +5,7 @@ metadata:
   name: mongo-app
 spec:
   # 3 Pods should exist at all times.
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: mongo-app
