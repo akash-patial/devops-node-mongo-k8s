@@ -20,6 +20,14 @@ spec:
       - name: mongo-app
         # Run this image
         image: mongo:latest
+        volumeMounts:
+        - mountPath: /data/db
+          name: mongo-vol
+      
+      volumes:
+        - name: mongo-vol
+          persistentVolumeClaim:
+            claimName: host-pvc
 
 
 ---
