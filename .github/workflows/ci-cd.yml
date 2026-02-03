@@ -26,7 +26,11 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/node-app:latest
-
+      
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/
+          
       - name: Deploy to Kubernetes
         run: |
           kubectl rollout restart deployment node-app
