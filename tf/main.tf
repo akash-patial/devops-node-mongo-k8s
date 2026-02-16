@@ -14,9 +14,9 @@ provider "aws" {
 
 }
 
-resource "aws_instance" "" {
+resource "aws_instance" "ec2server" {
 
-    ami = ""
+    ami = "ami-04c54313c5ae6bbcb"
     instance_type = "t3.micro"
 
     tags ={
