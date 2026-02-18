@@ -1,24 +1,29 @@
 pipeline {
     agent any
+
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Terraform Init') {
+        stage('Terraform') {
             steps {
                 dir('tf') {
-                    sh 'terraform init'
-                }
-            }
-        }
+                    withCredentials([usernamePassword(
+                        credentialsId: 'aws-creds',
+                        usernameVariable: 'AWS_ACCESS_KEY_ID',
+                        passwordVariable: 'AWS_SECRET_ACCESS_KEY'
+                    )]) {
 
-        stage('Terraform Plan') {
-            steps {
-                dir('tf') {
-                    sh 'terraform plan'
+                        sh '''
+                            terraform init
+                            terraform plan
+                            terraform apply -auto-approve
+                        '''
+                    }
                 }
             }
         }
